@@ -3,7 +3,7 @@
 
 This is a demo Products Browsing app written with VIPER Architecture using Swift 5+ , XCode 11.6
 
-![demo]()
+![demo](https://github.com/waqar1992/E-Com/blob/master/Demo.gif)
 
 ## About VIPER
 
