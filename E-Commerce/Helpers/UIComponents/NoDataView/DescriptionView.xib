@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view tag="998877" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="DescriptionView" customModule="E_Commerce" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="78"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGd-JU-k7m">
+                    <rect key="frame" x="8" y="41" width="371" height="29"/>
+                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.33333334329999997" blue="0.33333334329999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FavouriteSelectedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4gd-Me-KSc">
+                    <rect key="frame" x="181.5" y="9" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="4gd-Me-KSc" secondAttribute="height" multiplier="1:1" id="Cg1-wn-nA8"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MGd-JU-k7m" firstAttribute="top" secondItem="4gd-Me-KSc" secondAttribute="bottom" constant="8" id="91K-k0-XOx"/>
+                <constraint firstAttribute="bottom" secondItem="MGd-JU-k7m" secondAttribute="bottom" constant="8" id="VPR-T0-xFX"/>
+                <constraint firstItem="MGd-JU-k7m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="m0o-cs-nzP"/>
+                <constraint firstAttribute="trailing" secondItem="MGd-JU-k7m" secondAttribute="trailing" constant="8" id="oaA-5z-c1J"/>
+                <constraint firstItem="4gd-Me-KSc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="uW6-NA-acT"/>
+                <constraint firstItem="4gd-Me-KSc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zgt-KA-6OQ"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="descriptionImageView" destination="4gd-Me-KSc" id="c2G-nJ-2WU"/>
+                <outlet property="descriptionLabel" destination="MGd-JU-k7m" id="Nch-Z7-NOx"/>
+            </connections>
+            <point key="canvasLocation" x="39.200000000000003" y="-241.07946026986508"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="FavouriteSelectedIcon" width="24" height="24"/>
+    </resources>
+</document>
