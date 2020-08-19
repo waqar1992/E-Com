@@ -7,7 +7,8 @@
 //
 
 import Foundation
-class ProductListInteractor {
+
+class ProductListInteractor: ProductListInputInteractorProtocol {
     
     weak var presenter: ProductListOutputInteractorProtocol?
     var productService: ProductService = ProductStore.shared
@@ -69,7 +70,7 @@ class ProductListInteractor {
         
     }
     
-    private func filterDB(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool) {
+    private func filterDB(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool) {
         var filterBrand = [Product]()
         
         if brand == "All" {
@@ -93,27 +94,29 @@ class ProductListInteractor {
             filterSearch = filterBrand
         }
         
-        var filterAudioJack = [Product]()
+        var filterAudioJackGPS = [Product]()
         
         if isFilterApply {
             if audioJack {
-                filterAudioJack = filterSearch.filter {$0.audioJack == "Yes"}
+                filterAudioJackGPS.append(contentsOf:  filterSearch.filter {$0.audioJack == "Yes"})
             } else {
-                filterAudioJack = filterSearch.filter {$0.audioJack == "No"}
+                filterAudioJackGPS.append(contentsOf: filterSearch.filter {$0.audioJack == "No"})
+            }
+            
+            if haveGPS {
+                filterAudioJackGPS.append(contentsOf:  filterSearch.filter {$0.gps == "Yes"})
+            } else {
+                filterAudioJackGPS.append(contentsOf: filterSearch.filter {$0.gps == "No"})
             }
             
         } else {
-            filterAudioJack = filterSearch
+            filterAudioJackGPS = filterSearch
         }
         
-        self.presenter?.productListDidFilter(with: filterAudioJack)
+        self.presenter?.productListDidFilter(with: filterAudioJackGPS)
     }
-}
 
-// MARK: - ProductListInputInteractorProtocol
-
-extension ProductListInteractor: ProductListInputInteractorProtocol {
-    
+// MARK: - ProductListInputInteractorProtocol  
     func getProductList(with route: String, method: HTTPMethod) {
         fetchProducts(with: route, method: method)
     }
@@ -126,8 +129,8 @@ extension ProductListInteractor: ProductListInputInteractorProtocol {
     //        searchByPhone(brand: brand, phone: phone)
     //    }
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool) {
-        filterDB(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool) {
+        filterDB(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS)
     }
 }
 

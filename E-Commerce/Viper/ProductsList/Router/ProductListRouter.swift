@@ -12,7 +12,7 @@ import UIKit
 
 class ProductListRouter: ProductListRouterProtocol {
     
-    func gotFiltersView(with products: [Product], from view: UIViewController) {
+    func gotFiltersView(with products: [Product], from view: BaseViewController) {
         if let filtersViewController : FiltersListView = FiltersListView.instantiateViewControllerFromStoryboard(){
 //            postReviewVC.orderInfo = myOrderInfo
            view.navigationController?.present(filtersViewController, animated: true, completion: nil)
@@ -31,3 +31,4 @@ class ProductListRouter: ProductListRouterProtocol {
     }
     
 }
+

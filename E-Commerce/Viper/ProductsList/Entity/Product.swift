@@ -15,7 +15,7 @@ public struct Product: Codable, Hashable {
     public let picture: String?
     
     public var pictureURL: URL {
-        return URL(string: "\(picture ?? "")")!
+        return URL(string: "\(picture ?? Constants.BASE_API_URL)")!
     }
     
     //public let announceDate: String
@@ -24,7 +24,7 @@ public struct Product: Codable, Hashable {
     public let audioJack: String?
     public let gps: String?
     public let battery: String?
-    public let priceEur: Int?
+    public let priceEur: Double?
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(brand)

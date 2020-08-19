@@ -15,7 +15,7 @@ class FilterListRouter: FilterListRouterProtocol {
         let presenter = FilterListPresenter()
         presenter.products = products
         filterListRef.presenter = presenter
-//        movieDetailRef.presenter?.view = movieDetailRef
+
         filterListRef.presenter?.router = FilterListRouter()
         
         filterListRef.presenter?.interactor = FilterListInteractor()

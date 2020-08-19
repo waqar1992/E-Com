@@ -20,8 +20,8 @@ class ProductsListView: BaseViewController {
         return .lightContent  ///Set StatusBar mode to light
     }
     //MARK: - IBOutlets
-    @IBOutlet private var productsListCollectionView: UICollectionView!
-    @IBOutlet private var brandsListCollectionView: UICollectionView!
+    @IBOutlet var productsListCollectionView: UICollectionView!
+    @IBOutlet var brandsListCollectionView: UICollectionView!
     @IBOutlet private weak var searchBar: UITextField!
     
     //MARK: - ViewController Life Cycle
@@ -45,7 +45,7 @@ class ProductsListView: BaseViewController {
         loadProductsList()
     }
     
-    private func loadProductsList() {
+    func loadProductsList() {
         showHud()
         
         presenter?.fetchProductList(with: Constants.LATEST_ROUTE, method: HTTPMethod.GET)
@@ -66,14 +66,14 @@ extension ProductsListView: ProductListViewProtocol {
     
     
     func reloadView(with products: [Product], tags: [String]) {
-       hideHud()
+        hideHud()
         setDataAndReloadView(products: products, brands: tags)
         
     }
     
     func showError(with error: String) {
-      hideHud()
-       reloadProduct(msg: error)
+        hideHud()
+        reloadProduct(msg: error)
     }
     
     private func setDataAndReloadView(products :[Product]?, brands : [String]?){
@@ -84,14 +84,14 @@ extension ProductsListView: ProductListViewProtocol {
     }
     
     private func reloadProduct(msg: String?){
-       
+        
         if (productsList.count  <= 0 ){
             self.productsListCollectionView.showDescriptionViewWithImage(description: msg ?? "No data found")
             
         } else {
             self.productsListCollectionView.hideDescriptionView()
         }
-            productsListCollectionView.reloadData()
+        productsListCollectionView.reloadData()
     }
     
     
@@ -174,26 +174,36 @@ extension ProductsListView: UITextFieldDelegate {
 }
 
 
-// MARK: -
+// MARK: - Filter Methods
 
 extension ProductsListView {
     func filterProducts(searchKeyWord: String?) {
         
         guard (productsBrandNameList?.count ?? 0 > 0), let brandName = productsBrandNameList?[lastSelectedBrand] else {
-                   return
-               }
+            return
+        }
         
         if let searchKeyWord = searchKeyWord {
             let searchString = searchKeyWord.trimWhiteSpace()
             if searchString != "", searchString.count > 0 {
-                presenter?.filter(brand: brandName, phone: searchString, isFilterApply: isFilterApply, audioJack: false)
+                presenter?.filter(brand: brandName, phone: searchString, isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
             } else {
-                presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false)
+                presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
             }
         } else {
-            presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false)
+            presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
         }
     }
 }
 
 
+extension ProductsListView: SomeProtocolDelegate {
+
+    
+    func someMethod(isFilterApply: Bool, audioJack: Bool, isGPS: Bool) {
+    guard (productsBrandNameList?.count ?? 0 > 0), let brandName = productsBrandNameList?[lastSelectedBrand] else {
+               return
+           }
+       presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: audioJack,haveGPS: isGPS)
+    }
+}

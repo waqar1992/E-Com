@@ -26,7 +26,7 @@ class FilterListPresenter {
 extension FilterListPresenter: FilterListPresenterProtocol {
     
     func viewDidLoad() {
-//        view?.showMovieDetail(with: movie!)
+
     }
     
     func backButtonPressed(from view: UIViewController) {

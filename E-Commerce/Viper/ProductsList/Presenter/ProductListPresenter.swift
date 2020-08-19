@@ -32,7 +32,7 @@ class ProductListPresenter {
 // MARK: - ProductListPresenterProtocol
 
 extension ProductListPresenter: ProductListPresenterProtocol {
-    func showFiltersView(with products: [Product], from view: UIViewController) {
+    func showFiltersView(with products: [Product], from view: BaseViewController) {
         router?.gotFiltersView(with: products, from: view)
     }
     
@@ -50,8 +50,8 @@ extension ProductListPresenter: ProductListPresenterProtocol {
 //         interactor?.searchPhone(brand: brand, phone: phone)
 //    }
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool) {
-        interactor?.filter(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool){
+        interactor?.filter(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS )
     }
      
 }

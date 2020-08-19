@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol SomeProtocolDelegate {
+    func someMethod(isFilterApply: Bool, audioJack: Bool, isGPS: Bool)
+}
 protocol ProductListPresenterProtocol: class {
     
     var interactor: ProductListInputInteractorProtocol? {get set}
@@ -16,8 +19,8 @@ protocol ProductListPresenterProtocol: class {
     
     //View -> Presenter
     func fetchProductList(with route: String, method: HTTPMethod)
-    func showFiltersView(with products: [Product],from view: UIViewController)
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool)
+    func showFiltersView(with products: [Product],from view: BaseViewController)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool)
 }
 
 protocol ProductListInputInteractorProtocol: class {
@@ -29,7 +32,7 @@ protocol ProductListInputInteractorProtocol: class {
 //    func changeBrand(brand: String)
 //    func searchPhone(brand: String, phone: String)
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool)
 }
 
 protocol ProductListOutputInteractorProtocol: class {
@@ -53,6 +56,6 @@ protocol ProductListViewProtocol: class {
 protocol ProductListRouterProtocol: class {
     
     //Presenter -> Router
-    func gotFiltersView(with products: [Product], from view: UIViewController)
+    func gotFiltersView(with products: [Product], from view: BaseViewController)
     static func createProductListModule(productListRef: ProductsListView)
 }

@@ -23,13 +23,13 @@ public class ProductStore: ProductService {
     
     public func fetchProduct(with route: String, method: HTTPMethod, successHandler: @escaping (_ response: [Product]) -> Void, errorHandler: @escaping(_ error: Error) -> Void) {
         
-        let url = URL(string: "\(Constants.BASE_API_URL)\(route)")
+        let url = URL(string: String.init(format: "%@%@", Constants.BASE_API_URL,route))
         
-        guard let u = url else {
+        guard let apiURL = url else {
             return
         }
         
-        var request = URLRequest(url: u)
+        var request = URLRequest(url: apiURL)
         request.httpMethod = "GET"
         request.setValue(Constants.HEADER_VALUE, forHTTPHeaderField: Constants.HEADER_KEY)
         

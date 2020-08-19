@@ -17,7 +17,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
             }
 
             productImageView.setImage(with: product.pictureURL)
-            productPriceLabel.text = String.init(format: "%d", (product.priceEur ?? 0)).asLocaleCurrency
+            productPriceLabel.text = String.init(format: "%0.2f", (product.priceEur ?? 0.0)).asLocaleCurrency
             productNameLabel.text = product.phone
         }
     }
@@ -25,8 +25,8 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     //MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var productImageView: UIImageView!
-    @IBOutlet private weak var productNameLabel: UILabel!
-    @IBOutlet private weak var productPriceLabel: UILabel!
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
     
     //MARK: - CollectionViewCell Methods
     override func awakeFromNib() {
