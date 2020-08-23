@@ -24,14 +24,20 @@ class FiltersListView: BaseViewController {
     //MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
-        let vc = self.presentingViewController as? UINavigationController
-        let vc1 = vc?.topViewController as! ProductsListView as ProductsListView
-        delegate = vc1
+        setUpView()
     }
     
     
     //MARK: - Functions
+    private func setUpView(){
+        presenter?.viewDidLoad()
+        let vc = self.presentingViewController as? UINavigationController
+        let vc1 = vc?.topViewController as! ProductsListView as ProductsListView
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        delegate = vc1
+    }
+    
     
     //MARK: - IBActions
     
@@ -43,22 +49,5 @@ class FiltersListView: BaseViewController {
     @IBAction func applyFilterButtonPressed(_ sender : UIButton){
         self.delegate?.applyFilter(isFilterApply: true, audioJack: ((audioJackSegmentButton.selectedSegmentIndex) == 0 ? true: false), isGPS: ((gpsSegmentButton.selectedSegmentIndex) == 0 ? true: false), minPrice: minPriceTextFiled.text?.toDouble(), maxPrice: maxPriceTextFiled.text?.toDouble())
         self.dismiss(animated: true, completion: nil)
-    }
-}
-
-
-//MARK: - UITextFiledDelegates
-
-extension FiltersListView: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == minPriceTextFiled {
-            maxPriceTextFiled.becomeFirstResponder()
-            return true
-        }else if textField == maxPriceTextFiled{
-            _ = textField.becomeFirstResponder()
-            return false
-        } else{
-            return true
-        }
     }
 }
