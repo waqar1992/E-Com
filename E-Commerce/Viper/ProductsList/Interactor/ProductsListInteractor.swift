@@ -70,7 +70,7 @@ class ProductListInteractor: ProductListInputInteractorProtocol {
         
     }
     
-    private func filterDB(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool) {
+    private func filterProducts(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool, minPrice: Double?, maxPrice: Double?) {
         var filterBrand = [Product]()
         
         if brand == "All" {
@@ -97,17 +97,16 @@ class ProductListInteractor: ProductListInputInteractorProtocol {
         var filterAudioJackGPS = [Product]()
         
         if isFilterApply {
-            if audioJack {
-                filterAudioJackGPS.append(contentsOf:  filterSearch.filter {$0.audioJack == "Yes"})
-            } else {
-                filterAudioJackGPS.append(contentsOf: filterSearch.filter {$0.audioJack == "No"})
-            }
             
-            if haveGPS {
-                filterAudioJackGPS.append(contentsOf:  filterSearch.filter {$0.gps == "Yes"})
-            } else {
-                filterAudioJackGPS.append(contentsOf: filterSearch.filter {$0.gps == "No"})
-            }
+            filterAudioJackGPS.append(contentsOf: filterSearch.filter({ (product) -> Bool in
+                if (product.audioJack?.bool == audioJack && (product.gps?.contains((haveGPS == true) ? "Yes": "No") == true)
+                    && (product.priceEur ?? 0) >= (minPrice ?? 0.0) && (product.priceEur ?? 0) >= (maxPrice ?? 0.0)){
+                    return true
+                }
+                
+                return false
+            }))
+
             
         } else {
             filterAudioJackGPS = filterSearch
@@ -129,8 +128,8 @@ class ProductListInteractor: ProductListInputInteractorProtocol {
     //        searchByPhone(brand: brand, phone: phone)
     //    }
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool) {
-        filterDB(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool, minPrice: Double?, maxPrice: Double?) {
+        filterProducts(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS, minPrice: minPrice, maxPrice: maxPrice)
     }
 }
 

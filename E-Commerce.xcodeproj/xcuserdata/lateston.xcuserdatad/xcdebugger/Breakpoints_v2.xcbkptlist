@@ -32,7 +32,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "filterDB(brand:phone:isFilterApply:audioJack:haveGPS:)"
+            landmarkName = "filterProducts(brand:phone:isFilterApply:audioJack:haveGPS:minPrice:maxPrice:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55E76339-B9A9-4B95-B8C9-8330941B3C05"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E-Commerce/Viper/ProductsList/Interactor/ProductsListInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "filterProducts(brand:phone:isFilterApply:audioJack:haveGPS:minPrice:maxPrice:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

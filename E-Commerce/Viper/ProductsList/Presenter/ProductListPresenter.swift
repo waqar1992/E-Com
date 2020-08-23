@@ -50,8 +50,8 @@ extension ProductListPresenter: ProductListPresenterProtocol {
 //         interactor?.searchPhone(brand: brand, phone: phone)
 //    }
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool){
-        interactor?.filter(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS )
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool, minPrice: Double?, maxPrice: Double?){
+        interactor?.filter(brand: brand, phone: phone, isFilterApply: isFilterApply, audioJack: audioJack, haveGPS: haveGPS , minPrice: minPrice, maxPrice: maxPrice)
     }
      
 }

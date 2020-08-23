@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol SomeProtocolDelegate {
-    func someMethod(isFilterApply: Bool, audioJack: Bool, isGPS: Bool)
+protocol FilterProtocolDelegate {
+    func applyFilter(isFilterApply: Bool, audioJack: Bool, isGPS: Bool, minPrice: Double?, maxPrice: Double?)
 }
 protocol ProductListPresenterProtocol: class {
     
@@ -20,7 +20,7 @@ protocol ProductListPresenterProtocol: class {
     //View -> Presenter
     func fetchProductList(with route: String, method: HTTPMethod)
     func showFiltersView(with products: [Product],from view: BaseViewController)
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool, minPrice: Double?, maxPrice: Double?)
 }
 
 protocol ProductListInputInteractorProtocol: class {
@@ -32,7 +32,7 @@ protocol ProductListInputInteractorProtocol: class {
 //    func changeBrand(brand: String)
 //    func searchPhone(brand: String, phone: String)
     
-    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool)
+    func filter(brand: String, phone: String, isFilterApply: Bool, audioJack: Bool, haveGPS: Bool, minPrice: Double?, maxPrice: Double?)
 }
 
 protocol ProductListOutputInteractorProtocol: class {

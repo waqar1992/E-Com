@@ -186,24 +186,24 @@ extension ProductsListView {
         if let searchKeyWord = searchKeyWord {
             let searchString = searchKeyWord.trimWhiteSpace()
             if searchString != "", searchString.count > 0 {
-                presenter?.filter(brand: brandName, phone: searchString, isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
+                presenter?.filter(brand: brandName, phone: searchString, isFilterApply: isFilterApply, audioJack: false, haveGPS: false, minPrice: nil, maxPrice: nil)
             } else {
-                presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
+                presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false,  minPrice: nil, maxPrice: nil)
             }
         } else {
-            presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false)
+            presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: false, haveGPS: false, minPrice: nil, maxPrice: nil)
         }
     }
 }
 
 
-extension ProductsListView: SomeProtocolDelegate {
-
-    
-    func someMethod(isFilterApply: Bool, audioJack: Bool, isGPS: Bool) {
-    guard (productsBrandNameList?.count ?? 0 > 0), let brandName = productsBrandNameList?[lastSelectedBrand] else {
-               return
-           }
-       presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: audioJack,haveGPS: isGPS)
+extension ProductsListView: FilterProtocolDelegate {
+    func applyFilter(isFilterApply: Bool, audioJack: Bool, isGPS: Bool, minPrice: Double?, maxPrice: Double?) {
+        guard (productsBrandNameList?.count ?? 0 > 0), let brandName = productsBrandNameList?[lastSelectedBrand] else {
+            return
+        }
+        presenter?.filter(brand: brandName, phone: "", isFilterApply: isFilterApply, audioJack: audioJack,haveGPS: isGPS, minPrice: minPrice, maxPrice: maxPrice)
     }
+    
+    
 }
